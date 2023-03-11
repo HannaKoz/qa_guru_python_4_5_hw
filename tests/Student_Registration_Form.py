@@ -43,7 +43,8 @@ def test_form(browser_size_w1920_h1080):
 
     browser.element('[id="closeLargeModal"]').click()
     # Empty fields check
-    browser.element('#firstName').should(be.blank)
-    browser.element('#lastName').should(be.blank)
-    browser.element('#userEmail').should(be.blank)
-    browser.element('#userNumber').should(be.blank)
+    assert browser.element('#firstName').should(be.blank)
+    assert browser.element('#lastName').should(be.blank)
+    assert browser.element('#userEmail').should(be.blank)
+    assert browser.element('#userNumber').should(be.blank)
+    print('Good job, dude! :D')
