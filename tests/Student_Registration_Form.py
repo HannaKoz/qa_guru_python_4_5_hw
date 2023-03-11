@@ -1,14 +1,20 @@
-import pytest
 from selene import browser, have, be
 from selene.support.shared import browser
 
+
 def test_form(browser_size_w1920_h1080):
+    first_name = 'Иван'
+    second_name = 'Иванов'
+    userEmail = 'qa_test@test.ru'
+    userNumber = '3334445555'
+    address = "Планета Земля"
+
     browser.open('https://demoqa.com/automation-practice-form')
-    browser.element('#firstName').type('Иван')
-    browser.element('#lastName').type('Иванов')
-    browser.element('#userEmail').type('qa_test@test.ru')
+    browser.element('#firstName').type(first_name)
+    browser.element('#lastName').type(second_name)
+    browser.element('#userEmail').type(userEmail)
     browser.element('[for="gender-radio-1"]').click()
-    browser.element('#userNumber').type('3334445555')
+    browser.element('#userNumber').type(userNumber)
 
     # Choose Birthdate
     browser.element('#dateOfBirthInput').click()
@@ -22,7 +28,7 @@ def test_form(browser_size_w1920_h1080):
     browser.element('[for=hobbies-checkbox-3]').click()
     browser.element('#uploadPicture').send_keys('C:/Users/Hanna/Downloads/Без названия.jpg')
 
-    browser.element('#currentAddress').type("Планета Земля")
+    browser.element('#currentAddress').type(address)
     browser.element('#react-select-3-input').type('ra')
     browser.element('#react-select-3-option-1').click()
     browser.element('#react-select-4-input').type(' ')
@@ -32,19 +38,22 @@ def test_form(browser_size_w1920_h1080):
 
     # Inputs control
     browser.element('#example-modal-sizes-title-lg').should(have.text("Thanks"))
-    browser.element('//tbody/tr[1]/td[2]').should(have.text("Иван Иванов"))
-    browser.element('//tbody/tr[2]/td[2]').should(have.text("qa_test@test.ru"))
+    browser.element('//tbody/tr[1]/td[2]').should(have.text(first_name + " " + second_name))
+    browser.element('//tbody/tr[2]/td[2]').should(have.text(userEmail))
     browser.element('//tbody/tr[3]/td[2]').should(have.text("Male"))
-    browser.element('//tbody/tr[4]/td[2]').should(have.text("3334445555"))
+    browser.element('//tbody/tr[4]/td[2]').should(have.text(userNumber))
     browser.element('//tbody/tr[5]/td[2]').should(have.text("29 August,2001"))
     browser.element('//tbody/tr[6]/td[2]').should(have.text("Commerce"))
     browser.element('//tbody/tr[7]/td[2]').should(have.text("Music"))
-    browser.element('//tbody/tr[9]/td[2]').should(have.text("Планета Земля"))
+    browser.element('//tbody/tr[9]/td[2]').should(have.text(address))
+    browser.element('//tbody/tr[10]/td[2]').should(have.text("Uttar Pradesh Lucknow"))
 
     browser.element('[id="closeLargeModal"]').click()
-    # Empty fields check
-    assert browser.element('#firstName').should(be.blank)
-    assert browser.element('#lastName').should(be.blank)
-    assert browser.element('#userEmail').should(be.blank)
-    assert browser.element('#userNumber').should(be.blank)
-    print('Good job, dude! :D')
+
+    # Empty fields control
+    browser.element('#firstName').should(be.blank)
+    browser.element('#lastName').should(be.blank)
+    browser.element('#userEmail').should(be.blank)
+    browser.element('#userNumber').should(be.blank)
+
+
