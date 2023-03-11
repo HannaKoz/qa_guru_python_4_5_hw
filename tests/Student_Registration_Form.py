@@ -56,5 +56,3 @@ def test_form(browser_size_w1920_h1080):
     browser.element('#lastName').should(be.blank)
     browser.element('#userEmail').should(be.blank)
     browser.element('#userNumber').should(be.blank)
-
-
