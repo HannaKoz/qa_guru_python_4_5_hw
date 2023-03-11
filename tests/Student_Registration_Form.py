@@ -28,6 +28,7 @@ def test_form(browser_size_w1920_h1080):
     browser.element('[for=hobbies-checkbox-3]').click()
     browser.element('#uploadPicture').send_keys('C:/Users/Hanna/Downloads/Без названия.jpg')
 
+    # Enter address
     browser.element('#currentAddress').type(address)
     browser.element('#react-select-3-input').type('ra')
     browser.element('#react-select-3-option-1').click()
@@ -38,9 +39,9 @@ def test_form(browser_size_w1920_h1080):
 
     # Inputs control
     browser.element('#example-modal-sizes-title-lg').should(have.text("Thanks"))
-    browser.element('//tbody/tr[1]/td[2]').should(have.text(first_name + " " + second_name))
-    browser.element('//tbody/tr[2]/td[2]').should(have.text(userEmail))
-    browser.element('//tbody/tr[3]/td[2]').should(have.text("Male"))
+    browser.all('//tbody/tr')[0].should(have.text(first_name + " " + second_name))
+    browser.all('//tbody/tr')[1].should(have.text(userEmail))
+    browser.all('//tbody/tr')[2].should(have.text("Male"))
     browser.element('//tbody/tr[4]/td[2]').should(have.text(userNumber))
     browser.element('//tbody/tr[5]/td[2]').should(have.text("29 August,2001"))
     browser.element('//tbody/tr[6]/td[2]').should(have.text("Commerce"))
